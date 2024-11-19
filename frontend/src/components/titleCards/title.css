@@ -1,0 +1,152 @@
+.titleCards {
+    box-sizing: border-box;
+    margin: 3vw 0;
+    padding: 0;
+    width: 100%;
+}
+
+.titleCards h2 {
+    width: 100%;
+    font-weight: 500;
+    min-width: 6em;
+    text-decoration: none;
+    display: block;
+    font-size: 1.4vw;
+    line-height: 1.25vw;
+}
+
+.titleCards h2 a {
+    vertical-align: bottom;
+    color: #e5e5e5;
+    display: inline-block;
+    font-size: 1.4vw;
+    font-weight: 500;
+    margin: 0 4% .5em;
+    min-width: 6em;
+    text-decoration: none;
+}
+
+.more-visible .aro-row-chevron, .more-visible .see-all-link {
+    color: #54b9c5;
+}
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.card-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    width: 100%;
+    max-width: 100%;
+    padding-right: 10px;
+}
+
+.have-before::before {
+    content: "";
+    min-width: calc(4% - 10px);
+    flex-shrink: 0;
+}
+
+.card-list::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+
+.carousel-container:hover .carousel-control {
+    opacity: 1;
+}
+
+.carousel-control svg:hover {
+    transform: scale(1.5);
+    transition: scale .3s ease;
+}
+
+.carousel-control.left {
+    left: 0;
+}
+
+.carousel-control.right {
+    right: 0;
+}
+
+
+.card-list img {
+    width: 240px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.card {
+    width: calc((100% / 6.5) - 10px);
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0 .2vw;
+    position: relative;
+    vertical-align: top;
+    white-space: normal;
+    z-index: 1;
+    overflow: hidden;
+    min-width: 240px;
+    flex: 0 0 auto;
+}
+
+.card-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    width: 416px;
+    height: 240px;
+    z-index: 3;
+    opacity: 0;
+}
+
+/*.card:hover  {*/
+/*    transform: scale(2);*/
+/*}*/
+
+.boxart {
+    padding: 28.125% 0;
+    height: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.boxart img {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%
+}
