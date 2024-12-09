@@ -1,4 +1,4 @@
-.navbar {
+.navbar-container {
     width: 100%;
     padding: 20px 6%;
     display: flex;
@@ -10,7 +10,7 @@
     z-index: 1;
 }
 
-.navbar.scrolled {
+.navbar-container.scrolled {
     background: black;
     z-index: 1000;
     transition: background 0.3s ease;
@@ -61,7 +61,7 @@
     position: relative;
 }
 
-.navbar .dropdown {
+.navbar-container .dropdown {
     position: absolute;
     top: 100%;
     right: 0;
@@ -78,7 +78,7 @@
     transform: translateX(84%);
 }
 
-.dropdown-menu {
+.navbar-dropdown-menu {
     background: #191919;
     margin-top: -0.5rem;
 }

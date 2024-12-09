@@ -99,7 +99,7 @@
     cursor: pointer;
 }
 
-.card {
+.card-item {
     width: calc((100% / 6.5) - 10px);
     box-sizing: border-box;
     display: inline-block;

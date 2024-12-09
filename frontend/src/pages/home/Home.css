@@ -1,3 +1,11 @@
+.home main {
+    background-color: #000;
+}
+
+a {
+    text-decoration: none!important;
+}
+
 .banner {
     position: relative;
     width: 100%;

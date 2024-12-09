@@ -6,6 +6,8 @@ const initialState: UserState = {
     profiles: [],
     loading: false,
     error: null,
+    currentPage: 1,
+    totalItems: 0
 };
 
 const userSlice = createSlice({
@@ -16,9 +18,11 @@ const userSlice = createSlice({
             state.loading = true;
             state.error = null;
         },
-        fetchUsersSuccess(state, action: PayloadAction<User[]>) {
+        fetchUsersSuccess(state, action: PayloadAction<{ users: User[]; currentPage: number; totalItems: number; }>) {
             state.loading = false;
-            state.users = action.payload;
+            state.users = action.payload.users;
+            state.currentPage = action.payload.currentPage;
+            state.totalItems = action.payload.totalItems;
         },
         fetchUsersFailure(state, action: PayloadAction<string>) {
             state.loading = false;

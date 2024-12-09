@@ -20,19 +20,6 @@ export interface UserState {
     profiles: Profile[];
     loading: boolean;
     error: string | null;
-}
-
-export interface FetchUsersResponse {
-    users: User[];
-}
-
-export interface UpdateUserPayload {
-    id: number;
-    email: string;
-    role: number;
-    dob: Date;
-}
-
-export interface DeleteUserPayload {
-    id: number;
+    currentPage: number;
+    totalItems: number;
 }

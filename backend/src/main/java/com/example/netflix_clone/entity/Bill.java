@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -15,32 +14,25 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "subscription")
-public class Subscription {
+@Table(name = "bill")
+public class Bill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "user_id")
+    private Long userID;
 
-    @Column(name = "price")
-    private double price;
+    @Column(name = "sub_id")
+    private Long subID;
 
-    @Column(name = "resolution")
-    private String resolution;
+    @Column(name = "amount", columnDefinition = "DOUBLE DEFAULT 0")
+    private double amount;
 
-    @Column(name = "max_screens")
-    private int maxScreens;
-
-    @Column(name = "max_download_devices")
-    private int maxDownloadDevices;
+    @Column(name = "payment_method")
+    private String paymentMethod;
 
     @CreationTimestamp
     @Column(name = "create_at", nullable = false, updatable = false)
     private LocalDateTime createAt;
-
-    @UpdateTimestamp
-    @Column(name = "update_at")
-    private LocalDateTime updateAt;
 }

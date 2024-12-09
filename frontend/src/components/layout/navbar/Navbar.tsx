@@ -4,8 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import logo from '@/assets/images/logo.png'
 import avatar from '@/assets/images/avatar.jpg'
 import banner from '@/assets/images/banner.webp'
+import { useModal } from "../../context/ModalProvider.tsx";
 
 const Navbar = () => {
+    const { openModal } = useModal();
+
     const [isScrolled, setIsScrolled] = useState(false);
 
     const handleScroll = () => {
@@ -24,7 +27,7 @@ const Navbar = () => {
         };
     }, []);
     return (
-        <div className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <div className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}>
             <div className='navbar-left'>
                 <img src={logo} alt=""/>
                 <ul>
@@ -40,11 +43,11 @@ const Navbar = () => {
                 <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" className="icons"/>
                 <div className="noti">
                     <FontAwesomeIcon icon="fa-solid fa-bell" className="icons"/>
-                    <div className="dropdown" style={{display: "block"}}>
+                    <div className="dropdown">
                         <div className="dropdown-icon">
                             <FontAwesomeIcon icon="fa-solid fa-sort-up"/>
                         </div>
-                        <div className="dropdown-menu">
+                        <div className="navbar-dropdown-menu">
                             <a href="" className="notification-item">
                                 <img src={banner} alt=""/>
                                 <p>Một cậu bé trốn lên tàu và đi đến Mỹ sau sự kiện Shinmiyangyo năm 1871</p>
@@ -63,7 +66,7 @@ const Navbar = () => {
                         <div className="dropdown-icon">
                             <FontAwesomeIcon icon="fa-solid fa-sort-up"/>
                         </div>
-                        <div className="dropdown-menu">
+                        <div className="navbar-dropdown-menu">
                             <div className="profile-list">
                                 <div className="profile-item">
                                     <img src={avatar} alt=""/>
@@ -81,7 +84,7 @@ const Navbar = () => {
                                     <img src={avatar} alt=""/>
                                     <p>Htd</p>
                                 </div>
-                                <div className="profile-item">
+                                <div className="profile-item" onClick={openModal}>
                                     <FontAwesomeIcon icon="fa-solid fa-pencil"/>
                                     <p>Profile Management</p>
                                 </div>

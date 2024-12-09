@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Table, Spin, Alert, Button, Popconfirm, Modal, Form, Input} from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import {EditOutlined, DeleteOutlined, SearchOutlined, PlusCircleOutlined} from '@ant-design/icons';
 import {fetchUserRequest, fetchUsersRequest, updateUserRequest} from './redux/index.ts';
 import { RootState } from '../../../redux/store.ts';
 import {User} from "./types.ts";
 
 const UserManagement = () => {
     const dispatch = useDispatch();
-    const { users, loading: usersLoading, error: usersError } = useSelector((state: RootState) => state.user);
+    const { users, loading: usersLoading, error: usersError, currentPage, pageSize, totalItems } = useSelector((state: RootState) => state.user);
     const { profiles, loading: profilesLoading, error: profilesError } = useSelector((state: RootState) => state.user);
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
@@ -17,7 +17,7 @@ const UserManagement = () => {
 
 
     useEffect(() => {
-        dispatch(fetchUsersRequest());
+        dispatch(fetchUsersRequest({ pageNo: 1, pageSize: 10 }));
     }, [dispatch]);
 
     if (usersLoading) {
@@ -28,13 +28,10 @@ const UserManagement = () => {
         return <Alert message="Error" description={usersError} type="error" />;
     }
 
-    const handleUpdate = (user) => {
-        setCurrentUser(user);
-        form.setFieldsValue({
-            email: user.email,
-        });
-        setOpen(true);
-    };
+    const handleSearch = async () => {
+        const values = await form.validateFields();
+        dispatch(fetchUsersRequest({ email: values.email, pageNo: 1, pageSize: 10 }));
+    }
 
     const handleDetail = (user: User) => {
         setCurrentUser(user);
@@ -84,14 +81,6 @@ const UserManagement = () => {
             render: (_, record) => (
                 <span>
                     <Button type="primary" shape="circle" style={{ marginRight: 8 }} onClick={() => handleDetail(record)}>i</Button>
-                    <Button
-                        icon={<EditOutlined />}
-                        onClick={() => handleUpdate(record)}
-                        style={{ marginRight: 8 }}
-                        color="default" variant="solid"
-                    >
-                        Update
-                    </Button>
                     <Popconfirm
                         title="Are you sure to delete this user?"
                         onConfirm={() => handleDelete(record.id)}
@@ -117,7 +106,21 @@ const UserManagement = () => {
 
     return (
         <div>
-            <h2>Users</h2>
+            <Form form={form}
+                  labelCol={{ span: 2 }}
+                  labelAlign={"left"}
+                  wrapperCol={{ span: 4 }}
+                  name="query_sub_form"
+            >
+                <Form.Item name="email" label="Email">
+                    <Input />
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" icon={<SearchOutlined />} onClick={() => handleSearch()}>
+                        Search
+                    </Button>
+                </Form.Item>
+            </Form>
             <Table
                 dataSource={Array.isArray(users) ? users : []}
                 columns={userColumns}

@@ -91,7 +91,7 @@ const TitleCards = ({ title, className }) => {
                 <div className={`card-list ${className}`} ref={cardsRef}>
                     {
                         loopData.map((card, index) => (
-                            <div className="card" key={index}>
+                            <div className="card-item" key={index}>
                                 <div className="boxart">
                                     <img src={card.img} alt={`Card ${index + 1}`} />
                                 </div>

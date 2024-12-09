@@ -10,15 +10,20 @@ import {
     fetchUserSuccess,
     fetchUserFailure
 } from '../redux/index';
-import { userApi } from '../../../../api/user';
+import { userApi } from '../services/index.ts';
 import {Profile, User} from '../types.ts';
 
-function* fetchUsersSaga() {
+function* fetchUsersSaga(action: { payload: { pageNo: number; pageSize: number; email?: string } }) {
     try {
-        const response = yield call(() => userApi.getUserList());
-        const users: User[] = response.data.content;
-
-        yield put(fetchUsersSuccess(users));
+        const { pageNo, pageSize, email } = action.payload;
+        const response = yield call(() => userApi.getUserList(pageNo, pageSize, email));
+        yield put(
+            fetchUsersSuccess({
+                users: response.data.content,
+                currentPage: response.data.currentPage,
+                totalItems: response.data.totalItems,
+            })
+        );
     } catch (error: any) {
         yield put(fetchUsersFailure(error.message));
     }
@@ -44,7 +49,7 @@ function* fetchUserSaga(action: { payload: { id: number } }) {
         const profiles: Profile[] = response.data;
         yield put(fetchUserSuccess(profiles));
     } catch (error: any) {
-        const errorMessage = error.message || 'Failed to fetch user profile.';
+        const errorMessage = error.message || 'Failed to fetch user context.';
         yield put(fetchUserFailure(errorMessage));
     }
 }

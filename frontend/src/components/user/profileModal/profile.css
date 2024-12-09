@@ -1,0 +1,268 @@
+.modal-profile {
+    background: #141414;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    overflow: auto;
+    outline: 0;
+    -webkit-overflow-scrolling: touch;
+    text-align: center;
+}
+
+.profile-modal-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.profile-header {
+    color: #fff;
+    font-size: 3.5vw;
+    font-weight: unset;
+    width: 100%;
+    margin: .67em 0;
+}
+
+.profiles {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.profiles .profile-item {
+    margin-right: 2vw;
+    width: 10vw;
+}
+
+.profiles a {
+    text-decoration: none;
+}
+
+.avatar-wrapper {
+    position: relative;
+}
+
+.profiles .profile-item .avatar {
+    background-color: #333;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 10vw;
+    max-height: 200px;
+    max-width: 200px;
+    min-height: 84px;
+    min-width: 84px;
+    position: relative;
+    text-decoration: none;
+    width: 10vw;
+}
+
+.avatar-wrapper .editing {
+    opacity: 0.5;
+}
+
+.avatar-wrapper .overlay {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.avatar-wrapper .overlay svg {
+    height: 3rem;
+    max-height: 70px;
+    max-width: 70px;
+    width: 3rem;
+    color: white;
+}
+
+.avatar-wrapper .overlay .profile-icon-add {
+    max-width: 10rem;
+    height: 10rem;
+    width: 6rem;
+    max-height: 6rem;
+}
+
+.avatar:not(.editing) .overlay,
+.avatar:not(.editing) .edit-button {
+    display: none;
+}
+
+/*.avatar.editing::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: rgba(0, 0, 0, 0.5);*/
+/*    filter: brightness(0.5);*/
+/*    z-index: 1;*/
+/*}*/
+
+.edit-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: none;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.avatar.editing .edit-button {
+    display: block;
+}
+
+.profile-name {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.profiles .profile-item .avatar::after {
+    border: .3em solid transparent;
+    border-radius: 4px;
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.profiles .profile-name {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: grey;
+}
+
+.profile-button {
+    background-color: transparent;
+    border: 1px solid grey;
+    color: grey;
+    cursor: pointer;
+    display: block;
+    font-size: 1.2vw;
+    letter-spacing: 2px;
+    margin: 2em 0 1em;
+    padding: .5em 1.5em;
+    text-decoration: none;
+}
+
+.profile-button.preferred-action {
+    background: #fff;
+    border: 1px solid #fff;
+    color: #000;
+    font-weight: 500;
+}
+
+.profile-button:hover {
+    color: white;
+    border-color: white;
+}
+
+.profile-button.preferred-action:hover {
+    background: #c00;
+    border: 1px solid #c00;
+    color: #fff;
+}
+
+.profile-modal-content a:hover .avatar::after,
+.profile-modal-content a:hover .profile-name {
+    border-color: #e5e5e5;
+    color: #e5e5e5;
+}
+
+.profile-add-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.profile-add-content .profile-header {
+    font-size: 2.5vw;
+    margin-bottom: 1rem;
+}
+
+.profile-add-content p {
+    color: grey;
+}
+
+.profile-add-content .text-header,
+.profile-add-content .profile-form-add {
+    border-bottom: 1px solid #333333;
+}
+
+.profile-form-add {
+    padding: 2rem 0;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border: 1px solid #333;
+    position: relative;
+    cursor: pointer;
+}
+
+.custom-checkbox::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 2px;
+    transition: transform 0.2s ease-in-out;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.avatar-add img {
+    width: 10rem;
+    height: 10rem;
+    margin-right: 1rem;
+}
+
+.profile-input-name {
+    width: 18rem;
+    margin-right: 1rem;
+    background: #ccc;
+    outline: none;
+    border: none;
+    padding: 1rem 0;
+    color: #f1f1f1;
+}
+
+.profile-input-name::placeholder {
+    color: #888;
+    opacity: 1;
+}
